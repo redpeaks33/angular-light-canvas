@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+
+<head>
+    <title></title>
+    <script src="/download_lib/nuget_packages/scripts/angular.min.js"></script>
+    <script src="/download_lib/nuget_packages/scripts/jquery-1.9.1.min.js"></script>
+    <script src="/download_lib/nuget_packages/scripts/bootstrap.min.js"></script>
+    <script src="/download_lib/nuget_packages/scripts/underscore.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/download_lib/nuget_packages/Content/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/download_lib/nuget_packages/Content/bootstrap-theme.min.css">
+    <title></title>
+
+    <!--CanvasJS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
+
+    <!--dygraph-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.min.js"></script>
+    <link rel="stylesheet" src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.min.css" />
+
+    <!--create js-->
+    <script src="https://code.createjs.com/createjs-2015.05.21.min.js"></script>
+
+    <!-- slider -->
+    <script src="/download_lib/manual/angular-bootstrap-slider-master/slider.js"></script>
+    <script src="/download_lib/manual/bootstrap-slider-master/dist/bootstrap-slider.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/download_lib/manual/bootstrap-slider-master/dist/css/bootstrap-slider.min.css"/>
+
+    <!-- ui router -->
+    <script src="/download_lib/nuget_packages/scripts/angular-ui-router.min.js"></script>
+
+    <!-- file reader -->
+    <script src="/download_lib/manual/angular-file-input-master/dist/angular-file-input.min.js"></script>
+
+    <!-- 3D -->
+    <script src="/download_lib/manual/three.js-master/build/three.min.js"></script>
+    <script src="/download_lib/manual/angular-threejs-master/dist/angular-threejs.min.js"></script>
+
+    <!-- custom -->
+    <script src="/custom/js/controller.js"></script>
+    <script src="/custom/js/router.js"></script>
+    <script src="/custom/lightchart/js/threedController.js"></script>
+    <script src="/custom/lightchart/js/geometry.js"></script>
+    <script src="/custom/lightchart/js/lightchart.js"></script>
+    <script src="/custom/lightchart/js/charttimer.js"></script>
+    <script src="/custom/lightchart/js/inputfile.js"></script>
+    <link rel="stylesheet" type="text/css" href="/custom/css/chart.css">
+    <link rel="stylesheet" type="text/css" href="/custom/css/canvas.css" />
+    <link rel="stylesheet" type="text/css" href="/custom/css/charttimer.css" />
+    <script>
+        var box;
+    var init = function () {
+
+        // レンダラーを作成
+        var renderer = new THREE.WebGLRenderer();
+        // レンダラーのサイズを設定
+        renderer.setSize(800, 600);
+        // canvasをbodyに追加
+        document.body.appendChild(renderer.domElement);
+
+        // シーンを作成
+        var scene = new THREE.Scene();
+
+        // カメラを作成
+        var camera = new THREE.PerspectiveCamera(45, 800 / 600, 1, 1000);
+
+        // 箱を作成
+        var geometry = new THREE.BoxGeometry(1, 1, 1);
+        var material = new THREE.MeshPhongMaterial({ color: 0x0000ff });
+        box = new THREE.Mesh(geometry, material);
+        box.position.z = -5;
+        scene.add(box);
+
+        // 平行光源を生成
+        var light = new THREE.DirectionalLight(0xffffff);
+        light.position.set(1, 1, 1);
+        scene.add(light);
+
+        // 描画
+        renderer.render(scene, camera);
+
+        // 初回実行
+        var update = function () {
+            requestAnimationFrame(update);
+
+            // 箱を回転させる
+            box.rotation.x += 0.01;
+            box.rotation.y += 0.01;
+
+            renderer.render(scene, camera);
+        };
+        update();
+    }
+    window.addEventListener('DOMContentLoaded', init);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

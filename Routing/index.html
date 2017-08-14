@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+
+<head>
+    <title></title>
+    <script src="/download_lib/nuget_packages/scripts/angular.min.js"></script>
+    <script src="/download_lib/nuget_packages/scripts/jquery-1.9.1.min.js"></script>
+    <script src="/download_lib/nuget_packages/scripts/bootstrap.min.js"></script>
+    <script src="/download_lib/nuget_packages/scripts/underscore.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/download_lib/nuget_packages/Content/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/download_lib/nuget_packages/Content/bootstrap-theme.min.css">
+    <title></title>
+
+    <!--CanvasJS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
+
+    <!--dygraph-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.min.js"></script>
+    <link rel="stylesheet" src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.min.css" />
+
+    <!--create js-->
+    <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+
+    <!-- slider -->
+    <script src="/download_lib/manual/bootstrap-slider-master/dist/bootstrap-slider.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/download_lib/manual/bootstrap-slider-master/dist/css/bootstrap-slider.min.css"/>
+
+    <!-- ui router -->
+    <script src="/download_lib/nuget_packages/scripts/angular-ui-router.min.js"></script>
+
+    <!-- file reader -->
+    <script src="/download_lib/manual/angular-file-input-master/dist/angular-file-input.min.js"></script>
+
+    <!-- 3D -->
+    <script src="/download_lib/manual/three.js-master/build/three.min.js"></script>
+    <script src="/download_lib/manual/angular-threejs-master/dist/angular-threejs.min.js"></script>
+    <script src="/download_lib/manual/three.js-master/examples/js/controls/OrbitControls.js"></script>
+
+    <!-- custom -->
+    <script src="/custom/js/controller.js"></script>
+    <script src="/custom/js/router.js"></script>
+    <script src="/custom/lightchart/js/lightthreed.js"></script>
+    <script src="/custom/lightchart/js/lightchart.js"></script>
+    <script src="/custom/lightchart/js/lightchartsingle.js"></script>
+    <script src="/custom/lightchart/js/charttimer.js"></script>
+    <script src="/custom/lightchart/js/inputfile.js"></script>
+    <script src="/custom/lightchart/js/lightimage.js"></script>
+    <script src="/custom/lightchart/js/units/UnitDrawService.js"></script>
+    <link rel="stylesheet" type="text/css" href="/custom/css/chart.css">
+    <link rel="stylesheet" type="text/css" href="/custom/css/canvas.css" />
+    <link rel="stylesheet" type="text/css" href="/custom/css/charttimer.css" />
+    <link rel="stylesheet" type="text/css" href="/custom/css/3DChart.css" />
+</head>
+<body>
+    <div ng-controller="MyController" ng-init="initialize()">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <chart-Timer plotdata="dataPoints"></chart-Timer>
+                    <input-File></input-File>
+                </div>
+                <div class="col-lg-9">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" ng-click="tabClicked('chart2')">Chart x2</a></li>
+                        <li class=""><a data-toggle="tab" ng-click="tabClicked('chart4')">Chart x4</a></li>
+                        <li class=""><a data-toggle="tab" ng-click="tabClicked('chart8')">Chart x8</a></li>
+                        <li class=""><a data-toggle="tab" ng-click="tabClicked('chartImage')">Chart 8</a></li>
+                        <li class=""><a data-toggle="tab" ng-click="tabClicked('chart3D')">Chart 3D</a></li>
+                    </ul>
+                    <div ui-view></div>
+               </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

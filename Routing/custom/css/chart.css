@@ -1,0 +1,7 @@
+﻿container-fluid{
+    padding:30px;
+}
+.flex-container{
+    display:flex;
+    padding:30px;
+}

@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9EF88EB3-EA3C-4021-8A8A-8367D12180C4}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Routing</RootNamespace>
+    <AssemblyName>Routing</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CreateJSReg.PNG" />
+    <Content Include="custom\css\3DChart.css" />
+    <Content Include="custom\html\chartImage.html" />
+    <Content Include="custom\lightchart\html\lightchartsingle.html" />
+    <Content Include="custom\lightchart\html\lightimage.html" />
+    <Content Include="custom\lightchart\js\lightchartsingle.js" />
+    <Content Include="custom\lightchart\js\lightthreed.js" />
+    <Content Include="custom\lightchart\js\lightimage.js" />
+    <Content Include="custom\lightchart\js\threedController.js" />
+    <Content Include="custom\lightchart\js\units\UnitDrawService.js" />
+    <Content Include="custom\resource\bear.png" />
+    <Content Include="download_lib\manual\angular-bootstrap-slider-master\slider.js" />
+    <Content Include="download_lib\manual\angular-bootstrap-slider-master\test.js" />
+    <Content Include="download_lib\manual\angular-file-input-master\dist\angular-file-input.js" />
+    <Content Include="download_lib\manual\angular-file-input-master\dist\angular-file-input.min.js" />
+    <Content Include="download_lib\manual\angular-threejs-master\dist\angular-threejs.js" />
+    <Content Include="download_lib\manual\angular-threejs-master\dist\angular-threejs.min.js" />
+    <Content Include="download_lib\manual\bootstrap-slider-master\dist\bootstrap-slider.js" />
+    <Content Include="download_lib\manual\bootstrap-slider-master\dist\bootstrap-slider.min.js" />
+    <Content Include="download_lib\manual\bootstrap-slider-master\dist\css\bootstrap-slider.css" />
+    <Content Include="download_lib\manual\bootstrap-slider-master\dist\css\bootstrap-slider.min.css" />
+    <Content Include="download_lib\manual\three.js-master\build\three.js" />
+    <Content Include="download_lib\manual\three.js-master\build\three.min.js" />
+    <Content Include="download_lib\manual\three.js-master\build\three.module.js" />
+    <Content Include="download_lib\manual\three.js-master\examples\js\controls\OrbitControls.js" />
+    <Content Include="download_lib\nuget_packages\Content\bootstrap-theme.css" />
+    <Content Include="download_lib\nuget_packages\Content\bootstrap-theme.min.css" />
+    <Content Include="download_lib\nuget_packages\Content\bootstrap.css" />
+    <Content Include="download_lib\nuget_packages\Content\bootstrap.min.css" />
+    <Content Include="custom\css\charttimer.css" />
+    <Content Include="custom\css\webglcanvas.css" />
+    <Content Include="custom\css\canvas.css" />
+    <Content Include="custom\css\chart.css" />
+    <Content Include="custom\html\chart3D.html" />
+    <Content Include="custom\html\chart8.html" />
+    <Content Include="custom\html\chart4.html" />
+    <Content Include="custom\html\chart2.html" />
+    <Content Include="index3D.html" />
+    <Content Include="index.html" />
+    <Content Include="custom\js\router.js" />
+    <Content Include="custom\lightchart\html\charttimer.html" />
+    <Content Include="custom\lightchart\html\inputfile.html" />
+    <Content Include="custom\lightchart\js\charttimer.js" />
+    <Content Include="custom\lightchart\js\inputfile.js" />
+    <Content Include="memo.txt" />
+    <Content Include="custom\lightchart\html\lightchart.html" />
+    <Content Include="custom\lightchart\js\lightchart.js" />
+    <Content Include="download_lib\nuget_packages\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="custom\js\controller.js" />
+    <Content Include="download_lib\nuget_packages\scripts\angular-mocks.js" />
+    <None Include="download_lib\nuget_packages\scripts\angular.intellisense.js" />
+    <Content Include="download_lib\nuget_packages\scripts\angular-ui-router.js" />
+    <Content Include="download_lib\nuget_packages\scripts\angular-ui-router.min.js" />
+    <Content Include="download_lib\nuget_packages\scripts\angular.js" />
+    <Content Include="download_lib\nuget_packages\scripts\angular.min.js" />
+    <Content Include="download_lib\nuget_packages\scripts\underscore.js" />
+    <Content Include="download_lib\nuget_packages\scripts\underscore.min.js" />
+    <Content Include="download_lib\nuget_packages\scripts\angular.min.js.map" />
+    <None Include="download_lib\nuget_packages\scripts\_references.js" />
+    <Content Include="packages.config" />
+    <Content Include="download_lib\nuget_packages\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="download_lib\nuget_packages\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="download_lib\nuget_packages\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="download_lib\nuget_packages\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="download_lib\nuget_packages\Content\bootstrap.min.css.map" />
+    <Content Include="download_lib\nuget_packages\Content\bootstrap.css.map" />
+    <Content Include="download_lib\nuget_packages\Content\bootstrap-theme.min.css.map" />
+    <Content Include="download_lib\nuget_packages\Content\bootstrap-theme.css.map" />
+    <None Include="download_lib\nuget_packages\scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="download_lib\nuget_packages\scripts\bootstrap.js" />
+    <Content Include="download_lib\nuget_packages\scripts\bootstrap.min.js" />
+    <Content Include="download_lib\nuget_packages\scripts\jquery-1.9.1.js" />
+    <Content Include="download_lib\nuget_packages\scripts\jquery-1.9.1.min.js" />
+    <Content Include="download_lib\nuget_packages\scripts\jquery-1.9.1.min.map" />
+    <Content Include="download_lib\nuget_packages\scripts\underscore.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="custom\lightchart\css\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58375</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58375/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

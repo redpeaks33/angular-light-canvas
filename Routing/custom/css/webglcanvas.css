@@ -1,0 +1,71 @@
+﻿html {
+  font-size: 1px;
+  color: #888;
+}
+
+canvas.stage {
+  background: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.menu {
+  font-family: monospace;
+  font-size: 0px;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 300rem;
+  padding: 10rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+.menu .buttons {
+  margin-top: 10rem;
+  text-align: center;
+}
+.menu label {
+  display: block;
+  vertical-align: middle;
+  position: relative;
+}
+.menu label.scale {
+  height: 50rem;
+}
+.menu label.scale .name {
+  vertical-align: top;
+}
+.menu label.scale input[type=range], .menu label.scale input {
+  position: absolute;
+  bottom: 0;
+}
+.menu label .name {
+  display: inline-block;
+  font-size: 16rem;
+  width: 10%;
+  margin: 0;
+  vertical-align: middle;
+}
+.menu label input[type=range] {
+  display: inline-block;
+  width: 65%;
+  margin: 10rem 0;
+  vertical-align: middle;
+}
+.menu label .readout {
+  font-family: monospace;
+  color: #888;
+  font-size: 12rem;
+  background: transparent;
+  border: none;
+  display: inline-block;
+  width: 25%;
+  margin: 10rem 0;
+  padding: 0;
+  text-align: right;
+  right: 0;
+  vertical-align: middle;
+}

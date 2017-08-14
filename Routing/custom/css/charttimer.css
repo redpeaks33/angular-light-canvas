@@ -1,0 +1,19 @@
+﻿.buttonContainer{
+    display:flex;
+}
+
+.buttonContainer button:nth-child(n){
+    flex-basis:15%;
+    margin:5px;
+}
+
+.sliderContainer{
+    margin-top:100px;
+}
+#ex1Slider .slider-selection {
+	background: #BABABA;
+   
+}
+#ex1Slider{
+     width:400px;
+}

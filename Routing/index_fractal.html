@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+
+<head>
+    <title></title>
+    <script src="/scripts/angular.min.js"></script>
+    <script src="/scripts/jquery-1.9.1.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/underscore.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap-theme.min.css">
+    <title></title>
+
+    <!--CanvasJS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
+
+    <!--dygraph-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.min.js"></script>
+    <link rel="stylesheet" src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.min.css" />
+
+    <!--create js-->
+    <script src="https://code.createjs.com/createjs-2015.05.21.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/chart.css">
+    <link rel="stylesheet" type="text/css" href="/css/canvas.css" />
+    <link rel="stylesheet" type="text/css" href="/css/webglcanvas.css" />
+    <script src="/js/controller.js"></script>
+    <script src="/custom/js/directive.js"></script>
+    <script src="/lightchart/js/lightchart.js"></script>
+
+</head>
+<body>
+    <div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" ng-click="tabClicked('dygraph')">Dygraph</a></li>
+                    </ul>
+                    <canvas id="canvas"class="stage"></canvas>
+                    <div class="menu">
+                        <label class="scale">
+                            <div class="name">Scale</div>
+                            <input type="range" min="-1" max="1" step="0.00001" />
+                            <input class="readout" type="text" value="0.00" />
+                        </label>
+                        <label class="a">
+                            <div class="name">A</div>
+                            <input type="range" min="-3142" max="3142" step="0.0001" />
+                            <input class="readout" type="text" value="0.00" />
+                        </label>
+                        <label class="b">
+                            <div class="name">B</div>
+                            <input type="range" min="-3142" max="3142" step="0.0001" />
+                            <input class="readout" type="text" value="0.00" />
+                        </label>
+                        <label class="c">
+                            <div class="name">C</div>
+                            <input type="range" min="-3142" max="3142" step="0.0001" />
+                            <input class="readout" type="text" value="0.00" />
+                        </label>
+                        <label class="d">
+                            <div class="name">D</div>
+                            <input type="range" min="-3142" max="3142" step="0.0001" />
+                            <input class="readout" type="text" value="0.00" />
+                        </label>
+                        <label class="e">
+                            <div class="name">E</div>
+                            <input type="range" min="-3142" max="3142" step="0.0001" />
+                            <input class="readout" type="text" value="0.00" />
+                        </label>
+                        <label class="f">
+                            <div class="name">F</div>
+                            <input type="range" min="-3142" max="3142" step="0.0001" />
+                            <input class="readout" type="text" value="0.00" />
+                        </label>
+                        <div class="buttons">
+                            <button class="randomize">Randomize</button>
+                            <button class="save">Save</button><br />
+                            <button class="play">Play</button>
+                            <button class="stop">Stop</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script>
+       //inigo kiles
+
+       // Polyfills
+       NodeList.prototype.forEach =
+         NodeList.prototype.forEach ||
+         function (fn) {
+             return Array.prototype.forEach.call(this, fn);
+         };
+
+       function $(selector) {
+           return document.querySelectorAll(selector);
+       }
+
+       // VARS
+       var numParticles = 60000;
+       var valueScale = 0.5;
+       var animationRates = [
+         0,
+         -10.0001,
+         -10.0001,
+         10.0001,
+         10.0001,
+         10.0001,
+         -10.0001
+       ];
+
+       // Setup Stage
+       var pixelRatio = window.devicePixelRatio;
+       var WIDTH = window.innerWidth * pixelRatio;
+       var HEIGHT = window.innerHeight * pixelRatio;
+       var HALF_WIDTH = WIDTH >> 1;
+       var HALF_HEIGHT = HEIGHT >> 1;
+
+       var stageCanvas = $("canvas.stage")[0];
+       var ctx = stageCanvas.getContext("2d");
+       var stageImgData = ctx.createImageData(WIDTH, HEIGHT);
+       ctx.globalCompositeOperation = "screen";
+
+       // Setup Menu
+       var sliders = $("input[type=range]");
+       sliders.forEach(function (s) {
+           s.addEventListener("input", onSliderInput);
+       });
+
+       function onSliderInput(e) {
+           updateText(e.target);
+           drawAll(numParticles, getVals());
+       }
+
+       var textFields = $("input[type=text]");
+
+       textFields.forEach(function (f) {
+           f.addEventListener("change", onChangeText);
+       });
+
+       function onChangeText(e) {
+           updateSlider(e.target);
+           drawAll(numParticles, getVals());
+       }
+
+       $("button.randomize")[0].addEventListener("click", function () {
+           randomize();
+           drawAll(numParticles, getVals());
+       });
+       $("button.save")[0].addEventListener("click", save);
+       $("button.play")[0].addEventListener("click", play);
+       $("button.stop")[0].addEventListener("click", stop);
+
+       // Menu IO
+       function save(e) {
+           var a = document.createElement("a");
+           a.download = "CompositeWaveFractal-" + Date.now();
+           a.href = stageCanvas.toDataURL("image/png");
+
+           var e2 = document.createEvent("HTMLEvents");
+           e2.initEvent("click", true, true);
+           return !a.dispatchEvent(e2);
+       }
+
+       function randomize() {
+           sliders.forEach(function (s, i) {
+               // i=0 is the scale slider
+               s.value = i ? (Math.random() * 4 - 2) * 1000 : Math.random() * 2 - 1;
+               updateText(s);
+           });
+       }
+
+       var vals = [];
+
+       function getVals() {
+           vals = Array.prototype.map.call(sliders, function (s) {
+               return s.value / 30;
+           });
+
+           valueScale = vals.shift();
+           vals = vals.map(function (v) {
+               return v * valueScale;
+           });
+           return vals;
+       }
+
+       function updateText(slider) {
+           slider.parentNode.querySelector(".readout").value = slider.value;
+       }
+
+       function updateSlider(textField) {
+           textField.parentNode.querySelector("input[type=range]").value = parseFloat(
+             textField.value
+           );
+       }
+
+       // DRAW!!
+       var newImageData;
+
+       function drawAll(n, vals) {
+           newImageData = ctx.createImageData(WIDTH, HEIGHT);
+           var xs = 0,
+             ys = 0,
+             zs = 0;
+
+           for (var i = n; i >= 0; i--) {
+               var res = drawPoint(xs, ys, zs, vals);
+               xs = res[0];
+               ys = res[1];
+               zs = res[2];
+           }
+           ctx.putImageData(newImageData, 0, 0);
+       }
+
+       function drawPoint(xs, ys, zs, vals) {
+           var new_x =
+             Math.sin(vals[0] * xs) + Math.sin(vals[1] * ys) - Math.cos(vals[2] * zs);
+           var new_y =
+             Math.sin(vals[3] * xs) + Math.sin(vals[4] * ys) - Math.cos(vals[5] * zs);
+           xs = new_x;
+           ys = new_y;
+           zs = zs + 0.1;
+
+           addPixel(
+             newImageData,
+             ((xs * WIDTH) >> 3) + HALF_WIDTH,
+             ((ys * HEIGHT) >> 3) + HALF_HEIGHT,
+             64,
+             255,
+             210,
+             0.4
+           );
+
+           return [xs, ys, zs];
+       }
+
+       document.addEventListener("DOMContentLoaded", ready);
+       window.addEventListener("resize", onResize);
+
+       function ready() {
+           randomize();
+           onResize();
+       }
+
+       function onResize() {
+           pixelRatio = window.devicePixelRatio;
+           WIDTH = window.innerWidth * pixelRatio;
+           HEIGHT = window.innerHeight * pixelRatio;
+           HALF_WIDTH = WIDTH >> 1;
+           HALF_HEIGHT = HEIGHT >> 1;
+
+           stageCanvas.width = WIDTH;
+           stageCanvas.height = HEIGHT;
+           stageImgData = ctx.createImageData(WIDTH, HEIGHT);
+
+           drawAll(numParticles, getVals());
+       }
+
+       function addPixel(imageData, x, y, r, g, b, a) {
+           var d = imageData.data;
+           var i = (x << 2) + ((y * imageData.width) << 2);
+           d[i] += r * a;
+           d[i + 1] += g * a;
+           d[i + 2] += b * a;
+           d[i + 3] += 255 * a;
+       }
+
+       var rAF;
+
+       function play() {
+           if (rAF) return;
+           loop();
+       }
+
+       function stop() {
+           cancelAnimationFrame(rAF);
+           rAF = null;
+       }
+
+       function loop() {
+           rAF = requestAnimationFrame(loop);
+           sliders.forEach(function (s, i) {
+               s.value = parseFloat(s.value) + animationRates[i];
+               if (s.value >= parseFloat(s.max) || s.value <= parseFloat(s.min)) {
+                   animationRates[i] *= -1;
+               }
+               updateText(s);
+           });
+
+           drawAll(numParticles, getVals());
+       }
+
+</script>
+</html>

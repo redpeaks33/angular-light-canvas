@@ -1,0 +1,53 @@
+﻿#canvas_id{
+    border:1px solid red;
+}
+
+#canvas_id2{
+    border:1px solid blue;
+}
+body{
+    background-color:ghostwhite;
+}
+canvas{
+     border:1px solid blue;
+}
+
+.chartContainer1{
+    display:flex;
+    border:1px solid red;
+    margin-left:-15px;
+    margin-top:10px;
+}
+
+.lightchart{
+    background-color:white;
+}
+.lightchart canvas:nth-child(n){
+    position:absolute;
+}
+.lightchart canvas:nth-child(1){
+    z-index:4;
+}
+.lightchart canvas:nth-child(2){
+    z-index:3;
+}
+.lightchart canvas:nth-child(3){
+    z-index:2;
+}
+.lightchart canvas:nth-child(4){
+    z-index:1;
+}
+
+
+.chartContainer2{
+    display:flex;
+    border:1px solid red;
+    margin-left:-15px;
+    margin-top:10px;
+}
+
+.chartContainer2 .lightchart:nth-child(2){
+    margin-top:420px;
+    margin-left:-220px;
+}
+
