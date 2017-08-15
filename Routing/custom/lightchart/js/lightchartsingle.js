@@ -59,57 +59,74 @@
             }
 
             //#region initialize canvas
+            let termContainer;
             function initializeCanvas(canvasID) {
                 //context for plot main data
                 $scope.stage = new createjs.Stage($scope.chartid);
                 ctx = $scope.stage.canvas.getContext('2d');
 
-                setZoomEvent($scope.stage);
+                //context for axis for main data
+                $scope.stage_background = new createjs.Stage($scope.backgroundid);
+                ctx_back = $scope.stage_background.canvas.getContext('2d');
+
+                //add wheel event
+                let canvas = document.getElementById($scope.chartid);
+                canvas.addEventListener("mousewheel", MouseWheelHandler, false);//IE
+                canvas.addEventListener("DOMMouseScroll", MouseWheelHandler, false);//Firefox
+
+                setStageMouseEvent($scope.stage);
 
                 drawWhiteCanvas();
-                //drawAxis();
+                drawAxis();
                 calculatePlot();
 
                 //Sub Contents
+                drawContents();
                 //drawSubContents();
             }
+
             //#endregion
-            var setZoomEvent = function(stage)
-            {
-                stage.enableDOMEvents(true);
-                //OK
-                stage.addEventListener("mouseenter", function (evt) {
-                    //alert('enter');
-                })
-                stage.addEventListener("mouseleave", function (evt) {
-                    //alert('leave');
-                })
-                // タッチ操作をサポートしているブラウザーならば
-               // if (createjs.Touch.isSupported() == true) {
-                    // タッチ操作を有効にします。
-                    createjs.Touch.enable(stage)
-                //}
-                stage.enableMouseOver(20);
-                stage.addEventListener("stagemouseover", function (evt) {
-                    alert("the canvas was down at " + evt.stageX + "," + evt.stageY);
-                })
-                stage.addEventListener("pressmove", function (evt) {
-                    alert("the canvas was clicked at " + evt.stageX + "," + evt.stageY);
-                })
+            let zoom = 1;
+            function MouseWheelHandler(e) {
+                let stage = $scope.stage;
+                //wheelDelta -> IE
+                //detail -> Firefox
+                if (Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail))) > 0){
+                    zoom = 1.1;
+                }
+                else {
+                    zoom = 1 / 1.1;
+                }
+                //Global: original stage
+                //Local Zoomed stage
+                let local = stage.globalToLocal(stage.mouseX, stage.mouseY);
+                stage.regX = local.x;
+                stage.regY = local.y;
+                stage.x = stage.mouseX;
+                stage.y = stage.mouseY;
+                stage.scaleX *= zoom;
+                stage.scaleY *= zoom;
+                stage.update();
+            }
+            $scope.offset = {};
+        
+            var setStageMouseEvent = function (stage) {
                 stage.addEventListener("stagemousedown", function (e) {
-                    
                     var offset = { x: stage.x - e.stageX, y: stage.y - e.stageY };
+                    $scope.offset = offset;
                     stage.addEventListener("stagemousemove", function (ev) {
                         stage.x = ev.stageX + offset.x;
                         stage.y = ev.stageY + offset.y;
+                        $scope.offset = { x: stage.x, y: stage.y };
                         stage.update();
                     });
-                    stage.addEventListener("stagemouseup", function () {
+                    stage.addEventListener("stagemouseup", function (ev) {
                         stage.removeAllEventListeners("stagemousemove");
                     });
                 });
-                stage.update();
             }
+
+
             //#region transform coordination
             function convertScaleValue(originalPoints) {
                 var convertedPoints = [];
@@ -204,22 +221,23 @@
                                     clearImagePlot(stageImgData, ((n.x + px[p]) + (n.y + py[p]) * chartSizeInfo.canvasSizeX) * 4);
                                 }
                                 else {
-                                    setImagePlot(stageImgData, ((n.x + px[p]) + (n.y + py[p]) * chartSizeInfo.canvasSizeX) * 4);
+                                    //setImagePlot(stageImgData, ((n.x + px[p]) + (n.y + py[p]) * chartSizeInfo.canvasSizeX) * 4);
                                 }
-
                             }
-
                         }
-
+                        if (i % 4 == 0) {
+                            drawPlot(n,i);
+                        }
                     }
 
                 });
+                $scope.stage.update();
 
                 //Animation
-                circleShape.x = circleShape.x + 1;
-                $scope.stage_sub.update();
+                //circleShape.x = circleShape.x + 1;
+                //$scope.stage_sub.update();
 
-                ctx.putImageData(stageImgData, 0, 0)
+                //ctx.putImageData(stageImgData, 0, 0)
 
                 $scope.fps = createjs.Ticker.getMeasuredFPS();
                 $scope.tickTime = createjs.Ticker.getMeasuredTickTime();
@@ -298,7 +316,7 @@
                 let axisCount = xBase / span;
                 let startX = 0;
                 for (let i = 0; i < axisCount; i++) {
-                    if (i == 0)
+                    if (i % 5 == 0)
                     {
                         //base axis
                         g.s("Gray").setStrokeDash([1, 0], 0).setStrokeStyle(2);
@@ -306,16 +324,12 @@
                     else {
                         //sub axis
                         g.s("Gray").setStrokeDash([4, 2], 0).setStrokeStyle(1); //color dot thickness
-                        startX = chartSizeInfo.axisXPadding;
+                        startX = 0;//chartSizeInfo.axisXPadding;
                     }
-                    //if ((startX * startX) + (xBase -  span) * (xBase - span) < 50 * 50)
-                    {
-                        g.mt(startX, xBase - i * span);
-                        g.lt(chartSizeInfo.canvasSizeX, xBase - i * span);
-                    }
-                }
-                g.s("DarkRed").drawCircle(400, 490, 50);
 
+                    g.mt(startX, xBase - i * span);
+                    g.lt(chartSizeInfo.canvasSizeX, xBase - i * span);
+                }
             }
 
             function drawAxisY(g) {
@@ -324,7 +338,7 @@
                 let axisCount = chartSizeInfo.canvasSizeX / span;
                 let endP = 0;
                 for (let i = 0; i < axisCount; i++) {
-                    if (i == 0)
+                    if (i % 5 == 0)
                     {
                         //base axis
                         g.s("Gray").setStrokeDash([1, 0], 0).setStrokeStyle(2);
@@ -333,7 +347,7 @@
                     else {
                         //sub axis
                         g.s("Gray").setStrokeDash([4,2], 0).setStrokeStyle(1); //color dot thickness
-                        endP = chartSizeInfo.canvasSizeY - chartSizeInfo.axisXPadding;
+                        endP = chartSizeInfo.canvasSizeY;// - chartSizeInfo.axisXPadding;
                     }
                     g.mt(base + i * span, 0);
                     g.lt(base + i * span, endP);
@@ -344,6 +358,8 @@
             //#region draw white canvas
             var drawWhiteCanvas = function () {
                 stageImgData = ctx.createImageData(chartSizeInfo.canvasSizeX, chartSizeInfo.canvasSizeY);
+                $scope.stage.removeAllChildren();
+                $scope.stage.update();
             }
             //#endregion
             var circleShape;
@@ -381,6 +397,58 @@
                 diamondShape.y = 100;
                 $scope.stage_sub.addChild(diamondShape);
 
+            }
+
+            function drawContents() {
+                /////////////////////////////////////////////
+                g = new createjs.Graphics();
+
+                g.s("Green").setStrokeDash([8, 4], 0).setStrokeStyle(1); //color dot thickness
+                g.drawCircle(chartSizeInfo.canvasSizeX / 2, chartSizeInfo.canvasSizeY / 2 + 300, 200);
+                g.beginFill("Pink").drawCircle(40, 40, 30);
+
+                circleShape = new createjs.Shape(g);
+                $scope.stage.addChild(circleShape);
+
+                g = new createjs.Graphics();
+                ////////////////////////////////////////////////////////////////////////////////
+                g.s("Red").setStrokeDash([8, 4], 0).setStrokeStyle(1); //color dot thickness
+                g.beginFill("Yellow").drawRect(0, 0, 120, 120);
+                g.beginFill("blue").drawRect(10, 10, 100, 100);
+
+                diamondShape = new createjs.Shape(g);
+                diamondShape.regX = diamondShape.regY = 60;
+                diamondShape.rotation = 45;
+                diamondShape.x = 100;
+                diamondShape.y = 100;
+                $scope.stage.addChild(diamondShape);
+
+                g = new createjs.Graphics();
+                g.s("Blue").setStrokeStyle(2);
+                g.mt(0, 0);
+                g.lt(0, 9999);
+                g.mt(0, 0);
+                g.lt(9999, 0000);
+                let line = new createjs.Shape(g);
+                $scope.stage.addChild(line);
+                $scope.stage.update();
+
+                g = new createjs.Graphics();
+                g.beginFill("White").drawCircle(40, 40, 30);
+                circleShape = new createjs.Shape(g);
+                $scope.stage.addChild(circleShape);
+
+                //drawPlot(null);
+
+                //$scope.stage.update();
+            }
+
+            function drawPlot(p, i) {
+                g = new createjs.Graphics();
+                //g.beginFill("Red").drawCircle(p.x, p.y, 1);
+                g.beginFill("Red").drawCircle(p.x, p.y, Number(2/zoom).toFixed(3));
+                circleShape = new createjs.Shape(g);
+                $scope.stage.addChild(circleShape);
             }
         }],
     };

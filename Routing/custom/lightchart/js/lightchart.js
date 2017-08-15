@@ -49,7 +49,7 @@
                     initializeCanvas();
 
                     //static
-                    //drawExecuteAllPlots();
+                    drawExecuteAllPlots();
 
                     //dynamic
                     createjs.Ticker.addEventListener("tick", handleTick);
@@ -83,7 +83,7 @@
 
                 //stage2.nextStage = stage1;
                 $scope.stage_background.nextStage = $scope.stage;
-                //setZoomEvent($scope.stage);
+                setZoomEvent($scope.stage);
                 //setZoomEvent($scope.stage_background);
                 //$scope.stage.nextStage = $scope.stage_background;
                 //$scope.stage_backgroundnextStage = $scope.stage;
@@ -112,7 +112,6 @@
                 stage.scaleX = stage.scaleY *= zoom;
 
                 stage.update();
-
             }
 
             var setZoomEvent = function(stage)
