@@ -364,48 +364,16 @@
             //#endregion
             var circleShape;
             var rectangleShape;
-            function drawSubContents() {
-                let g = new createjs.Graphics();
-
-                g.s("Blue").setStrokeDash([4,2], 0).setStrokeStyle(1); //color dot thickness
-                g.drawCircle(chartSizeInfo.canvasSizeX / 2, chartSizeInfo.canvasSizeY/2, 200);
-               
-
-                var s = new createjs.Shape(g);
-                s.draw(ctx_sub);
-
-                /////////////////////////////////////////////
-                g = new createjs.Graphics();
-
-                g.s("Green").setStrokeDash([8, 4], 0).setStrokeStyle(1); //color dot thickness
-                g.drawCircle(chartSizeInfo.canvasSizeX / 2, chartSizeInfo.canvasSizeY / 2 + 300, 200);
-                g.beginFill("Pink").drawCircle(40, 40,30);
-
-                circleShape = new createjs.Shape(g);
-                $scope.stage_sub.addChild(circleShape);
-
-                g = new createjs.Graphics();
-                ////////////////////////////////////////////////////////////////////////////////
-                g.s("Red").setStrokeDash([8, 4], 0).setStrokeStyle(1); //color dot thickness
-                g.beginFill("Yellow").drawRect(0, 0, 120, 120);
-                g.beginFill("blue").drawRect(10, 10, 100, 100);
-
-                diamondShape = new createjs.Shape(g);
-                diamondShape.regX = diamondShape.regY = 60;
-                diamondShape.rotation = 45;
-                diamondShape.x = 100;
-                diamondShape.y = 100;
-                $scope.stage_sub.addChild(diamondShape);
-
-            }
 
             function drawContents() {
                 /////////////////////////////////////////////
                 g = new createjs.Graphics();
 
-                g.s("Green").setStrokeDash([8, 4], 0).setStrokeStyle(1); //color dot thickness
-                g.drawCircle(chartSizeInfo.canvasSizeX / 2, chartSizeInfo.canvasSizeY / 2 + 300, 200);
-                g.beginFill("Pink").drawCircle(40, 40, 30);
+                g.s("Green").setStrokeStyle(1); //color dot thickness
+                g.drawCircle(chartSizeInfo.canvasSizeX / 2, chartSizeInfo.canvasSizeY / 2, 200);
+
+                createCircleWithNotch(g)
+
 
                 circleShape = new createjs.Shape(g);
                 $scope.stage.addChild(circleShape);
@@ -449,6 +417,19 @@
                 g.beginFill("Red").drawCircle(p.x, p.y, Number(2/zoom).toFixed(3));
                 circleShape = new createjs.Shape(g);
                 $scope.stage.addChild(circleShape);
+            }
+            function createCircleWithNotch(g) {
+                g.s("Blue").setStrokeStyle(1); //color dot thickness
+                let center = { x: chartSizeInfo.canvasSizeX / 2, y: chartSizeInfo.canvasSizeY / 2 }
+                let angle = 3;
+                let r = 180
+                g.arc(center.x, center.y, r, (90 - angle) * Math.PI / 180, (90 + angle) * Math.PI / 180, true);
+
+                let dX = r * Math.sin(angle * Math.PI / 180);
+                let dY = r * Math.cos(angle * Math.PI / 180);
+                g.mt(center.x - dX , center.y + dY);
+                g.lt(center.x, center.y + r - 20);
+                g.lt(center.x + dX, center.y + dY);
             }
         }],
     };
