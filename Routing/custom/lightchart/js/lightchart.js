@@ -416,7 +416,7 @@
 
                 var s = new createjs.Shape(g);
                 s.draw(ctx_sub);
-
+                createCircleWithNotch(g)
                 /////////////////////////////////////////////
                 g = new createjs.Graphics();
 
@@ -440,6 +440,20 @@
                 diamondShape.y = 100;
                 $scope.stage_sub.addChild(diamondShape);
                 
+            }
+
+            function createCircleWithNotch(g) {
+                g.s("Blue").setStrokeStyle(1); //color dot thickness
+                let center = { x: chartSizeInfo.canvasSizeX / 2, y: chartSizeInfo.canvasSizeY / 2 }
+                let angle = 3;
+                let r = 180
+                g.arc(center.x, center.y, r, (90 - angle) * Math.PI / 180, (90 + angle) * Math.PI / 180, true);
+
+                let dX = r * Math.sin(angle * Math.PI / 180);
+                let dY = r * Math.cos(angle * Math.PI / 180);
+                g.mt(center.x - dX, center.y + dY);
+                g.lt(center.x, center.y + r - 20);
+                g.lt(center.x + dX, center.y + dY);
             }
         }],
     };
