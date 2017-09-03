@@ -85,6 +85,8 @@
     <Content Include="custom\resource\bear.png" />
     <Content Include="download_lib\manual\angular-bootstrap-slider-master\slider.js" />
     <Content Include="download_lib\manual\angular-bootstrap-slider-master\test.js" />
+    <Content Include="download_lib\manual\angular-dygraphs-master\demo\demo.css" />
+    <Content Include="download_lib\manual\angular-dygraphs-master\demo\index.html" />
     <Content Include="download_lib\manual\angular-dygraphs-master\src\angular-dygraphs.js" />
     <Content Include="download_lib\manual\angular-file-input-master\dist\angular-file-input.js" />
     <Content Include="download_lib\manual\angular-file-input-master\dist\angular-file-input.min.js" />
@@ -99,6 +101,8 @@
     <Content Include="download_lib\manual\bootstrap-slider-master\dist\css\bootstrap-slider.min.css" />
     <Content Include="download_lib\manual\dygraph\dygraph.css" />
     <Content Include="download_lib\manual\dygraph\dygraph.min.js" />
+    <Content Include="download_lib\manual\less.js-3.x\dist\less.js" />
+    <Content Include="download_lib\manual\less.js-3.x\dist\less.min.js" />
     <Content Include="download_lib\manual\three.js-master\build\three.js" />
     <Content Include="download_lib\manual\three.js-master\build\three.min.js" />
     <Content Include="download_lib\manual\three.js-master\build\three.module.js" />
@@ -128,12 +132,16 @@
     <Content Include="download_lib\nuget_packages\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="custom\js\controller.js" />
     <Content Include="download_lib\nuget_packages\scripts\angular-mocks.js" />
-    <Content Include="download_lib\manual\angular-dygraphs-master\src\angular-dygraphs.less" />
     <Content Include="download_lib\manual\angular-sanitize-master\angular-sanitize.min.js.map" />
     <Content Include="download_lib\manual\angular-sanitize-master\bower.json" />
     <Content Include="download_lib\manual\angular-sanitize-master\LICENSE.md" />
     <Content Include="download_lib\manual\angular-sanitize-master\package.json" />
     <Content Include="download_lib\manual\angular-sanitize-master\README.md" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="download_lib\manual\angular-dygraphs-master\demo\variables.less" />
     <None Include="download_lib\nuget_packages\scripts\angular.intellisense.js" />
     <Content Include="download_lib\nuget_packages\scripts\angular-ui-router.js" />
     <Content Include="download_lib\nuget_packages\scripts\angular-ui-router.min.js" />

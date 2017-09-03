@@ -19,6 +19,7 @@
 /// <reference path="../../manual/angular-threejs-master/dist/angular-threejs.js" />
 /// <reference path="../../manual/bootstrap-slider-master/dist/bootstrap-slider.js" />
 /// <reference path="../../manual/dygraph/dygraph.min.js" />
+/// <reference path="../../manual/less.js-3.x/dist/less.js" />
 /// <reference path="../../manual/three.js-master/build/three.js" />
 /// <reference path="../../manual/three.js-master/build/three.module.js" />
 /// <reference path="../../manual/three.js-master/examples/js/controls/orbitcontrols.js" />
