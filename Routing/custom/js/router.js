@@ -8,6 +8,10 @@
           url: 'chart4',
           templateUrl: '/custom/html/chart4.html'
       })
+      .state('chart8', {
+          url: 'chart8',
+          templateUrl: '/custom/html/chart8.html'
+      })
       .state('chartImage', {
           url: '/chartImage',
           templateUrl: '/custom/html/chartImage.html'

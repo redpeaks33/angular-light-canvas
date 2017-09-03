@@ -11,7 +11,8 @@ main.controller('MyController', ['$scope', '$state','$timeout', function ($scope
         //initializeDataRandom(0, 0);
         $scope.length = $scope.dataPoints.length;
         //$state.go('chart2');
-        $state.go('chart4');
+        //$state.go('chart4');
+        $state.go('chart8');
         //$state.go('chartImage');
         //$state.go('chart3D');
 

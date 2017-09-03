@@ -71,9 +71,12 @@
   <ItemGroup>
     <Content Include="CreateJSReg.PNG" />
     <Content Include="custom\css\3DChart.css" />
+    <Content Include="custom\css\chart_dygraph.css" />
     <Content Include="custom\html\chartImage.html" />
     <Content Include="custom\lightchart\html\lightchartsingle.html" />
+    <Content Include="custom\lightchart\html\lightdygraph.html" />
     <Content Include="custom\lightchart\html\lightimage.html" />
+    <Content Include="custom\lightchart\js\lightdygraph.js" />
     <Content Include="custom\lightchart\js\lightchartsingle.js" />
     <Content Include="custom\lightchart\js\lightthreed.js" />
     <Content Include="custom\lightchart\js\lightimage.js" />
