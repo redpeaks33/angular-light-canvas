@@ -1,2 +1,15 @@
-﻿.lightdygraph{
+﻿.lightdygraph canvas {
+  border: 1px solid red;
+}
+.lightdygraph .dygraph-legend {
+  background-color: white;
+  padding: 5px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #888;
+  pointer-events: none;
+  width: 200px;
+}
+.lightdygraph pre {
+  margin-top: 30px;
 }

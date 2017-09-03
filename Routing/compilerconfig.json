@@ -2,5 +2,9 @@
   {
     "outputFile": "download_lib/manual/angular-dygraphs-master/src/angular-dygraphs.css",
     "inputFile": "download_lib/manual/angular-dygraphs-master/src/angular-dygraphs.less"
+  },
+  {
+    "outputFile": "custom/css/chart_dygraph.css",
+    "inputFile": "custom/css/chart_dygraph.less"
   }
 ]

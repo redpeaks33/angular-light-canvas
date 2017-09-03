@@ -24,6 +24,5 @@ C:\Users\RedpeaksDev\Documents\GitHub\angular-light-canvas\Routing\bin\Newtonsof
 C:\Users\RedpeaksDev\Documents\GitHub\angular-light-canvas\Routing\bin\System.Web.Http.xml
 C:\Users\RedpeaksDev\Documents\GitHub\angular-light-canvas\Routing\bin\System.Web.Http.WebHost.xml
 C:\Users\RedpeaksDev\Documents\GitHub\angular-light-canvas\Routing\bin\System.Net.Http.Formatting.xml
-C:\Users\RedpeaksDev\Documents\GitHub\angular-light-canvas\Routing\obj\Debug\Routing.csprojResolveAssemblyReference.cache
 C:\Users\RedpeaksDev\Documents\GitHub\angular-light-canvas\Routing\obj\Debug\Routing.dll
 C:\Users\RedpeaksDev\Documents\GitHub\angular-light-canvas\Routing\obj\Debug\Routing.pdb

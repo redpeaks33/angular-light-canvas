@@ -71,7 +71,13 @@
   <ItemGroup>
     <Content Include="CreateJSReg.PNG" />
     <Content Include="custom\css\3DChart.css" />
-    <Content Include="custom\css\chart_dygraph.css" />
+    <None Include="custom\css\chart_dygraph.less" />
+    <Content Include="custom\css\chart_dygraph.css">
+      <DependentUpon>chart_dygraph.less</DependentUpon>
+    </Content>
+    <Content Include="custom\css\chart_dygraph.min.css">
+      <DependentUpon>chart_dygraph.css</DependentUpon>
+    </Content>
     <Content Include="custom\html\chartImage.html" />
     <Content Include="custom\lightchart\html\lightchartsingle.html" />
     <Content Include="custom\lightchart\html\lightdygraph.html" />
@@ -100,7 +106,10 @@
     <Content Include="download_lib\manual\bootstrap-slider-master\dist\css\bootstrap-slider.css" />
     <Content Include="download_lib\manual\bootstrap-slider-master\dist\css\bootstrap-slider.min.css" />
     <Content Include="download_lib\manual\dygraph\dygraph.css" />
+    <Content Include="download_lib\manual\dygraph\dygraph.js" />
     <Content Include="download_lib\manual\dygraph\dygraph.min.js" />
+    <Content Include="download_lib\manual\dygraph\interaction-api.js" />
+    <Content Include="download_lib\manual\dygraph\synchronizer.js" />
     <Content Include="download_lib\manual\less.js-3.x\dist\less.js" />
     <Content Include="download_lib\manual\less.js-3.x\dist\less.min.js" />
     <Content Include="download_lib\manual\three.js-master\build\three.js" />
