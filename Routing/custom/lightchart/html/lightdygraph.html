@@ -1,3 +1,8 @@
 ﻿<div class="lightdygraph">
     {{plotdata}}
+    <ng-dygraphs ng-if="graph.data.length"
+        data="graph.data"
+        options="graph.options"
+        legend="graph.legend">
+</ng-dygraphs>
 </div>

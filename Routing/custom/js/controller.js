@@ -1,10 +1,13 @@
 ﻿var main = angular.module("app", [
     'ui.router',
     'angularFileInput',
-    'threejs'
+    'threejs',
+    'ngSanitize',
+    'angular-dygraphs'
 ]);
 
-main.controller('MyController', ['$scope', '$state','$timeout', function ($scope,$state, $timeout) {
+main.controller('MyController',
+    ['$scope', '$state', '$timeout', function ($scope, $state, $timeout) {
     $scope.initialize = function()
     {
         initializeData(0, 0);
