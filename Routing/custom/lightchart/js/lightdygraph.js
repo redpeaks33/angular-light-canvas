@@ -22,8 +22,8 @@
                         width:350,//chart width
                         height: 400,//chart height
                         labels: [ "x", "yValue" ],
-                        title: '',//draw a title of graph over it.
-                        ylabel: 'yName',//draw a label of y axis.
+                        title: 'aaa',//draw a title of graph over it.
+                        ylabel: '',//draw a label of y axis.
                         labelsSeparateLines: true,//whether separating lines 
                         legend: 'always',//show legend. 'always':always,'follow':follow mouse moveing.'onmouseover':only on mouse over,'never':off.
                         drawPoints: true,//whether draw circle of each plot points.
@@ -41,6 +41,14 @@
                             strokeWidth: 1,
                             strokeBorderWidth: 1,
                             highlightCircleSize: 5,//circle size when high lighting on mouse over.
+                        },
+                        interactionModel: {
+                            'mousedown': downV3,
+                            'mousemove': moveV3,
+                            'mouseup': upV3,
+                            'click': clickV3,
+                            'dblclick': dblClickV3,
+                            'mousewheel': scrollV3
                         }
                     },
                     legend: {

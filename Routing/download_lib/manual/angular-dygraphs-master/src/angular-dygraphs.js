@@ -31,7 +31,7 @@ angular.module("angular-dygraphs", [
                 '<div class="dypopover"></div>' +
                 '</div>',                                               // Outer div
             link: function (scope, element, attrs) {
-                scope.LegendEnabled = true;
+                scope.LegendEnabled = false;
 
                 var parent = element.parent();
                 var mainDiv = element.children()[0];
