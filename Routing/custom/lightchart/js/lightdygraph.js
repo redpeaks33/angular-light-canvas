@@ -14,7 +14,7 @@
             initialize();
 
             function initialize() {
-                $scope.graph.data = convertPlotdata();
+                //$scope.graph.data = convertPlotdata();
 
                 $scope.graph = {
                     data: convertPlotdata(),
@@ -30,6 +30,7 @@
                         drawAxisAtZero: true,//if ??
                         strokeWidth: 1.0,//The width of plot line.
                         stackedGraph: false,//whether paint between x axis and plot line.
+                       
                         //pointSize:2,
                         color: 'red',
                         series: {
@@ -42,14 +43,15 @@
                             strokeBorderWidth: 1,
                             highlightCircleSize: 5,//circle size when high lighting on mouse over.
                         },
-                        interactionModel: {
-                            'mousedown': downV3,
-                            'mousemove': moveV3,
-                            'mouseup': upV3,
-                            'click': clickV3,
-                            'dblclick': dblClickV3,
-                            'mousewheel': scrollV3
-                        }
+                        //interactionModel: {
+                        //    'mousedown': downV3,
+                        //    'mousemove': moveV3,
+                        //    'mouseup': upV3,
+                        //    'click': clickV3,
+                        //    'dblclick': dblClickV3,
+                        //    'mousewheel': scrollV3
+                        //},
+                        showRangeSelector: false,
                     },
                     legend: {
                     //    series: {
@@ -68,6 +70,30 @@
             //        ]);
             //    }
             }
+
+            $scope.$on('zoomType', function (e, type) {
+                if (type == 0) {
+                    //$scope.graph.options.interactionModel = {};
+                    $scope.graph.options.showRangeSelector = false;
+                }
+                else if (type == 1) {
+                    $scope.graph.options.interactionModel = {
+                            'mousedown': downV3,
+                            'mousemove': moveV3,
+                            'mouseup': upV3,
+                            'click': clickV3,
+                            'dblclick': dblClickV3,
+                            'mousewheel': scrollV3
+                            };
+                    $scope.graph.options.showRangeSelector = false;
+                }
+                else if (type == 2) {
+                    //$scope.graph.options.interactionModel = {};
+                    $scope.graph.options.showRangeSelector = true;
+                }
+
+            })
+
             function convertPlotdata() {
                 let list = [];
                 _.each($scope.plotdata, function (n, i) {

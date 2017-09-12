@@ -79,9 +79,11 @@
       <DependentUpon>chart_dygraph.css</DependentUpon>
     </Content>
     <Content Include="custom\html\chartImage.html" />
+    <Content Include="custom\lightchart\html\dygraphoptions.html" />
     <Content Include="custom\lightchart\html\lightchartsingle.html" />
     <Content Include="custom\lightchart\html\lightdygraph.html" />
     <Content Include="custom\lightchart\html\lightimage.html" />
+    <Content Include="custom\lightchart\js\dygraphoptions.js" />
     <Content Include="custom\lightchart\js\lightdygraph.js" />
     <Content Include="custom\lightchart\js\lightchartsingle.js" />
     <Content Include="custom\lightchart\js\lightthreed.js" />

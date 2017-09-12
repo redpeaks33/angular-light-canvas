@@ -2,6 +2,7 @@
 /// <reference path="../../../custom/js/controller.js" />
 /// <reference path="../../../custom/js/router.js" />
 /// <reference path="../../../custom/lightchart/js/charttimer.js" />
+/// <reference path="../../../custom/lightchart/js/dygraphoptions.js" />
 /// <reference path="../../../custom/lightchart/js/inputfile.js" />
 /// <reference path="../../../custom/lightchart/js/lightchart.js" />
 /// <reference path="../../../custom/lightchart/js/lightchartsingle.js" />
